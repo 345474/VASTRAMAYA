@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vāstrāmāya Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f2f2f2; }
+    input, textarea { width: 100%; margin-bottom: 10px; padding: 10px; }
+    button { background: #cf308a; color: white; padding: 10px; border: none; width: 100%; }
+  </style>
+</head>
+<body>
+  <h2>Upload New Product</h2>
+  <input id="name" placeholder="Product Name" />
+  <input id="price" placeholder="Price" />
+  <input id="image" placeholder="Image Path (e.g. images/1000257005.jpg)" />
+  <button onclick="addProduct()">Add Product</button>
+
+  <script>
+    function addProduct() {
+      const name = document.getElementById('name').value;
+      const price = document.getElementById('price').value;
+      const image = document.getElementById('image').value;
+
+      fetch('products.json')
+        .then(res => res.json())
+        .then(data => {
+          data.push({ name, price, image });
+          const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'products.json';
+          a.click();
+        });
+    }
+  </script>
+</body>
+</html>

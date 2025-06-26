@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Red Bridal Saree",
+    "price": 2499,
+    "image": "images/product1.jpg"
+  },
+  {
+    "name": "Kundan Set",
+    "price": 999,
+    "image": "images/product2.jpg"
+  }
+]
